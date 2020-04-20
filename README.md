@@ -41,18 +41,34 @@ Returns all the records as a list of Row.
  df.count() 
 
 
+df.createGlobalTempView("people")
+df2 = spark.sql("select * from global_temp.people")
+
+df.createOrReplaceGlobalTempView("people")
+df2 = df.filter(df.age > 3)
+df2.createOrReplaceGlobalTempView("people")
+df3 = spark.sql("select * from global_temp.people")
+sorted(df3.collect()) == sorted(df2.collect())
 
 
 
+df.select("age", "name").collect()
 
+df.crossJoin(df2.select("height")).select("age", "name", "height").collect()
 
+df.describe(['age']).show()
 
++-------+------------------+
+|summary|               age|
++-------+------------------+
+|  count|                 2|
+|   mean|               3.5|
+| stddev|2.1213203435596424|
+|    min|                 2|
+|    max|                 5|
++-------+------------------+
 
-
-
-
-
-
+df.describe().show()
 
 
 
