@@ -21,8 +21,8 @@ spark = SparkSession.builder \
     .getOrCreate()
 
 # pyspark.sql.DataFrame
-- A distributed collection of data grouped into named columns
--agg
+- A distributed collection of data grouped into named columns 
+- agg
   df.agg({"age": "max"}).collect() \
 o/p - [Row(max(age)=5)] \
 from pyspark.sql import functions as F \
