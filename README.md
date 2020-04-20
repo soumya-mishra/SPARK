@@ -29,3 +29,30 @@ from pyspark.sql import functions as F \
 df.agg(F.min(df.age)).collect() \
 o/p -[Row(min(age)=2)]
 
+
+df = spark.createDataFrame([("a", 1), ("b", 2), ("c",  3)], ["Col1", "Col2"]) \
+df.select(df.colRegex("`(Col1)?+.+`")).show()
+
+# collect 
+- Returns all the records as a list of Row.
+- df.collect()
+- Correlation
+ df.corr() \
+- df.count()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
